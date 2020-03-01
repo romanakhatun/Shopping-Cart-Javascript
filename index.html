@@ -101,14 +101,14 @@
 							<div class="row">
 								<div class="col-md-8">
 									<h5>Subtotal:</h5>
-									<h5>Tax:</h5>
+									<h5>Tax 10%:</h5>
 									<h5>Total:</h5>
 								</div>
 
 								<div class="col-md-4 status">
-									<h5>$ <span id="subTotal">1,278</span></h5>
-									<h5>$ <span id="tax">0</span></h5>
-									<h5>$ <span id="grandTotal">1,278</span></h5>
+									<h5>$ <span id="subTotal">1278.00</span></h5>
+									<h5>$ <span id="tax">127.80</span></h5>
+									<h5>$ <span id="grandTotal">1405.80</span></h5>
 								</div>
 							</div>
 						 </div>
@@ -144,6 +144,7 @@
 				  updateSubtotal();
 				 
 				});
+
 				//decrease phone
 				const decrease1 = document.getElementById("decrease1");
 				decrease1.addEventListener("click", function(){
@@ -155,20 +156,22 @@
 				});
 				
 				
-				//increase case
+				//increase phone
 				const currentP2 = document.getElementById("currentP2").innerText;
+				
 				const increase2 = document.getElementById("increase2");
 				increase2.addEventListener("click", function(){
-					update("number2", 1, currentP2, "currentP2");
-					updateSubtotal();
-				
+				 update("number2", 1, currentP2, "currentP2");
+				  updateSubtotal();
+				 
 				});
-				//decrease case
-			    const decrease2 = document.getElementById("decrease2");
-				 decrease2.addEventListener("click", function(){
-				 const number1 = document.getElementById("number2").value;
-					 if(number1 > 1){
-					  update("number2", -1, currentP2, "currentP2");
+				
+				//decrease phone
+				const decrease2 = document.getElementById("decrease2");
+				decrease2.addEventListener("click", function(){
+				const number2 = document.getElementById("number2").value;
+				   if(number2 > 1){
+					   update("number2", -1, currentP2, "currentP2");
 					   updateSubtotal();
 					}
 				});
@@ -178,13 +181,15 @@
 				    const currentPrice1 = document.getElementById("currentP1").innerText;
 					const currentPrice2 = document.getElementById("currentP2").innerText;
 					
-					const subTotal = parseFloat(currentPrice1) + parseFloat(currentP2);
+					const subTotal = parseFloat(currentPrice1) + parseFloat(currentPrice2);
+					document.getElementById("subTotal").innerHTML = subTotal.toFixed(2);
 					
-				    const tax = document.getElementById("tax").innerText;
+					const taxCalc = 10 / 100 * subTotal;
+					document.getElementById("tax").innerText = taxCalc.toFixed(2);
 					
-					const grandTotal = parseFloat(subTotal) + parseFloat(tax);
+					const grandTotal = subTotal + taxCalc;
 					 document.getElementById("grandTotal").innerHTML = grandTotal;
-					 console.log(grandTotal)
+					 console.log(grandTotal);
 				 }	
 		</script>
 	</body>
