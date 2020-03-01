@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Shopping Cart</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		/>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+			rel="stylesheet"
+		/>
+		<link href="style.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<section>
+			<div class="container">
+				<div class="cart">
+					<div class="col-md-12 col-lg-10 mx-auto">
+					 <!---phone--->
+						<div class="cart-item">
+							<div class="row">
+								<div class="col-md-7 center-item">
+									<img src="images/product-1.png" alt="" />
+									<h5>iPhone 11 128GB Black</h5>
+								</div>
+							   <div class="col-md-5 center-item">
+								    <div class="input-group number-spinner">
+									     <button 
+										    class="btn btn-default" 
+										    id="decrease1">
+											<i class="fas fa-minus"></i>
+										</button>
+
+										<input
+											id="number1"
+											class="form-control text-center"
+											value="1"
+										/>
+										
+										<button
+											class="btn btn-default"
+											id="increase1">
+											<i class="fas fa-plus"></i>
+										</button>
+									</div>
+									
+									<h5>$ <span id="currentP1">1219</span></h5>
+									<img
+										src="images/remove.png"
+										alt=""
+										class="remove-item"
+									/>
+								</div>
+							</div>
+						</div>
+
+						<!--case-->
+						<div class="cart-item">
+							<div class="row">
+								<div class="col-md-7 center-item mx-auto">
+									<img src="images/product-2.png" alt="" />
+									<h5>iPhone 11 Silicone Case - Black</h5>
+								</div>
+								<div class="col-md-5 center-item">
+									<div class="input-group number-spinner">
+									
+										<button 
+											id="decrease2"	 
+											class="btn btn-default">
+											<i class="fas fa-minus"></i>
+										</button>
+										
+										<input
+											id="number2"
+											class="form-control text-center"
+											value="1"
+										/>
+										
+										<button 
+											id="increase2"	
+											class="btn btn-default">
+											<i class="fas fa-plus"></i>
+										</button>
+										
+									</div>
+								
+									<h5>$<span id="currentP2">59</span></h5>
+									<img
+										src="images/remove.png"
+										alt=""
+										class="remove-item"
+									/>
+								</div>
+							</div>
+						</div>
+						 <div class="cart-item">
+							<div class="row">
+								<div class="col-md-8">
+									<h5>Subtotal:</h5>
+									<h5>Tax:</h5>
+									<h5>Total:</h5>
+								</div>
+
+								<div class="col-md-4 status">
+									<h5>$ <span id="subTotal">1,278</span></h5>
+									<h5>$ <span id="tax">0</span></h5>
+									<h5>$ <span id="grandTotal">1,278</span></h5>
+								</div>
+							</div>
+						 </div>
+						 
+						 <div class="col-md-12 pt-4 pb-4">
+							<button
+								type="button"
+								class="btn btn-success check-out"
+							>
+								Check Out
+							</button>
+						</div>
+				</div>
+			</div>
+		</section>
+		
+		<script>
+				function update(id, incDec, currentPrice, currentPriceId){
+				    const number = document.getElementById(id).value;
+					const numberUpdate = parseFloat(number) + incDec;
+					document.getElementById(id).value = numberUpdate;
+					
+					const currentPriceNumber = parseFloat(currentPrice);
+					const updatePrice = currentPriceNumber * numberUpdate;
+					document.getElementById(currentPriceId).innerHTML = updatePrice;
+				}
+				//increase phone
+				const currentP1 = document.getElementById("currentP1").innerText;
+				
+				const increase1 = document.getElementById("increase1");
+				increase1.addEventListener("click", function(){
+				 update("number1", 1, currentP1, "currentP1");
+				  updateSubtotal();
+				 
+				});
+				//decrease phone
+				const decrease1 = document.getElementById("decrease1");
+				decrease1.addEventListener("click", function(){
+				const number1 = document.getElementById("number1").value;
+				   if(number1 > 1){
+					   update("number1", -1, currentP1, "currentP1");
+					   updateSubtotal();
+					}
+				});
+				
+				
+				//increase case
+				const currentP2 = document.getElementById("currentP2").innerText;
+				const increase2 = document.getElementById("increase2");
+				increase2.addEventListener("click", function(){
+					update("number2", 1, currentP2, "currentP2");
+					updateSubtotal();
+				
+				});
+				//decrease case
+			    const decrease2 = document.getElementById("decrease2");
+				 decrease2.addEventListener("click", function(){
+				 const number1 = document.getElementById("number2").value;
+					 if(number1 > 1){
+					  update("number2", -1, currentP2, "currentP2");
+					   updateSubtotal();
+					}
+				});
+				
+				 updateSubtotal();
+				 function updateSubtotal(){
+				    const currentPrice1 = document.getElementById("currentP1").innerText;
+					const currentPrice2 = document.getElementById("currentP2").innerText;
+					
+					const subTotal = parseFloat(currentPrice1) + parseFloat(currentP2);
+					
+				    const tax = document.getElementById("tax").innerText;
+					
+					const grandTotal = parseFloat(subTotal) + parseFloat(tax);
+					 document.getElementById("grandTotal").innerHTML = grandTotal;
+					 console.log(grandTotal)
+				 }	
+		</script>
+	</body>
+</html>
