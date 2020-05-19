@@ -1,4 +1,5 @@
 # SHOPPING CART
-#### Shopping Cart create with HTML, CSS and Javascript
+#### Shopping Cart create with HTML5, CSS3 and Javascript
 
-### [Preview project](https://romanakhatun.github.io/shopping-cart/)
+
+### [Preview](https://romanakhatun.github.io/shopping-cart/)
